@@ -16,7 +16,8 @@ pipeline {
         stage('Verificar alterações') {
             steps {
                 script {
-                    def changes = sh(script: "git status --porcelain", returnStdout: true).trim()
+                    // Verifica alterações locais
+                    def changes = bat(script: "git status --porcelain", returnStdout: true).trim()
                     if (changes == '') {
                         echo "Nenhuma alteração detectada."
                         currentBuild.result = 'SUCCESS'
@@ -31,11 +32,12 @@ pipeline {
         stage('Commit e Push') {
             steps {
                 script {
-                    sh '''
+                    // Executa comandos Git no Windows
+                    bat """
                     git add .
-                    git commit -m "Atualização automática via Jenkins" || echo "Nada para commitar"
-                    git push origin ${BRANCH}
-                    '''
+                    git commit -m "Atualização automática via Jenkins" || echo Nada para commitar
+                    git push origin %BRANCH%
+                    """
                 }
             }
         }
