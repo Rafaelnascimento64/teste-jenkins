@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     environment {
-        GIT_REPO = 'https://github.com/rafaelnascimento64/teste-jenkins.git'
+        GIT_REPO = 'https://github.com/Rafaelnascimento64/teste-jenkins.git'
         BRANCH = 'teste-jenkins-rafael'
     }
 
     stages {
         stage('Clonar repositório') {
             steps {
-                git branch: "${BRANCH}", url: "${GIT_REPO}", credentialsId: 'a54577b0-4608-4b59-afdc-98314f10628a"
+                git branch: "${BRANCH}", url: "${GIT_REPO}", credentialsId: 'a54577b0-4608-4b59-afdc-98314f10628a'
             }
         }
 
@@ -42,6 +42,6 @@ pipeline {
     }
 
     triggers {
-        cron('H 8 * * *') // executa todo dia às 8h UTC (5h no Brasil)
+        cron('H 8 * * *') // executa todo dia às 8h UTC
     }
 }
